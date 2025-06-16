@@ -20,7 +20,14 @@ def process_product(numbers):
         rand_num = random.randint(0, 9)
         print(f"Product is odd. Appending random number: {rand_num}")
         numbers.append(rand_num)
+        print(f"List after appending: {numbers}")
         product = multiply_numbers(numbers)
         append_count += 1
 
+    if product % 2 == 0:
+        print("Product is even. Proceeding to division step.\n")
+    else:
+        print("Product remained odd after 3 attempts. Proceeding anyway.\n")
+
+    print(f"Final list after product step: {numbers}\n")
     return numbers

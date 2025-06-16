@@ -15,9 +15,13 @@ def get_integer_list():
 
 if __name__ == "__main__":
     numbers = get_integer_list()
+    print(f"Initial list: {numbers}")
 
     numbers = process_sum(numbers)
+    print("Proceeding to product stage...\n")
+
     numbers = process_product(numbers)
+    print("Proceeding to division stage...\n")
 
     try:
         result = divide_first_last(numbers)
