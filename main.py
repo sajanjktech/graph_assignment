@@ -1,6 +1,15 @@
 from adder import process_sum
 from multiplier import process_product
 from divider import divide_first_last
+from average import calculate_average
+
+
+pipeline_steps = [
+    ("summation", process_sum),
+    ("multiplication", process_product),
+    ("division", divide_first_last),
+    ("averaging", calculate_average)
+]
 
 def get_integer_list():
     """Takes at least two integers as input from the user and returns them as a list."""
@@ -19,14 +28,12 @@ if __name__ == "__main__":
     numbers = get_integer_list()
     print(f"Initial list: {numbers}")
 
-    numbers = process_sum(numbers)
-    print("Proceeding to product stage...\n")
+    for step_name, step_function in pipeline_steps:
+        print(f"\n starting {step_name} process...")
+        numbers = step_function(numbers)
+        print(f"\n List after {step_name} step: {numbers}")
+    
+    
 
-    numbers = process_product(numbers)
-    print("Proceeding to division stage...\n")
 
-    try:
-        result = divide_first_last(numbers)
-        print(f"Final Result (First element / Last element): {result}")
-    except ZeroDivisionError as e:
-        print("Error:", e)
+

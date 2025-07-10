@@ -25,6 +25,4 @@ def process_sum(numbers):
         print("Sum is now even. Moving to multiplication step.")
     else:
         print("Sum is still odd after 3 tries. Moving to multiplication step anyway.")
-
-    print(f"Final list after sum step: {numbers}\n")
     return numbers

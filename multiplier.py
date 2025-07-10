@@ -28,5 +28,4 @@ def process_product(numbers):
     else:
         print("Product remained odd after 3 attempts. Proceeding anyway.\n")
 
-    print(f"Final list after product step: {numbers}\n")
     return numbers

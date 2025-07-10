@@ -7,4 +7,5 @@ def divide_first_last(numbers):
     if numbers[-1] == 0:
         raise ZeroDivisionError("Cannot divide by zero (last number is zero).")
     result = numbers[0] // numbers[-1]
-    return result
+    print(f"Division result of first and last number: {result}")
+    return numbers
