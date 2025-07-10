@@ -2,7 +2,9 @@ import random
 
 def add_numbers(numbers):
     """Return and print the sum of numbers in the list."""
-    total = sum(numbers)
+    total = 0
+    for num in numbers:
+        total += num
     print(f"Current sum of list: {total}")
     return total
 

@@ -7,8 +7,8 @@ def get_integer_list():
     while True:
         try:
             user_input = input("Enter at least two integers separated by space: ")
-            numbers = list(map(int, user_input.split()))
-            
+            numbers = [int(num) for num in user_input.split()]
+
             if len(numbers) < 2:
                 raise ValueError("You must enter at least two integers.")
             return numbers

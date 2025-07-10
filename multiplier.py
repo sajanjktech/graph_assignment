@@ -1,10 +1,9 @@
 import random
+import math
 
 def multiply_numbers(numbers):
     """Returns the product of all numbers in the list and prints it."""
-    result = 1
-    for num in numbers:
-        result *= num
+    result = math.prod(numbers)
     print(f"Product of list: {result}")
     return result
 
