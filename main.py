@@ -1,14 +1,14 @@
 from adder import process_sum
 from multiplier import process_product
 from divider import divide_first_last
-from average import calculate_average
+from average import process_average
 
 
 pipeline_steps = [
     ("summation", process_sum),
     ("multiplication", process_product),
     ("division", divide_first_last),
-    ("averaging", calculate_average)
+    ("averaging", process_average)
 ]
 
 def get_integer_list():
