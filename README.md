@@ -1,6 +1,6 @@
 # 📊 Graph Assignment
 
-A Python-based number processing project that takes a list of integers and performs **sum**, **multiplication**, and **division**, with random number appending based on parity (even/odd). Each operation is modularized into separate files.
+A Python-based number processing project that takes a list of integers and performs **sum**, **multiplication**, **division**, and optional additional steps like **average**, with random number appending based on parity (even/odd). Each operation is modularized into separate files and processed through a pipeline for easy extension.
 
 ---
 
@@ -8,16 +8,22 @@ A Python-based number processing project that takes a list of integers and perfo
 
 1. **Input**: User enters at least two integers into a list.
 2. **Sum Step**:
-   - Compute sum of the list.
-   - If **even** → proceed to multiplication.
-   - If **odd** → append a random number (0–9); repeat up to **3 times** until even.
+
+   * Compute sum of the list.
+   * If **even** → proceed to multiplication.
+   * If **odd** → append a random number (0–9); repeat up to **3 times** until even.
 3. **Product Step**:
-   - Compute product of the list.
-   - If **even** → proceed to division.
-   - If **odd** → append a random number (0–9); repeat up to **3 times** until even.
+
+   * Compute product of the list.
+   * If **even** → proceed to division.
+   * If **odd** → append a random number (0–9); repeat up to **3 times** until even.
 4. **Division Step**:
-   - Perform integer division of the **first element by the last**.
-   - If the last number is **0**, raise a `ZeroDivisionError`.
+
+   * Perform integer division of the **first element by the last**.
+   * If the last number is **0**, raise a `ZeroDivisionError`.
+5. **(Optional) Additional Steps**:
+
+   * Any additional step (like average) can easily be added to the pipeline.
 
 ---
 
@@ -28,7 +34,8 @@ graph_assignment/
 ├── adder.py         # Handles sum logic and appending if sum is odd
 ├── multiplier.py    # Handles product logic and appending if product is odd
 ├── divider.py       # Handles division with zero-check
-├── main.py          # Main script to run the entire process
+├── average.py       # Example: Computes average of list (optional step)
+├── main.py          # Main script to run the entire process via pipeline
 ├── .gitignore       # Ignores venv/ and __pycache__/
 ├── README.md        # This file
 └── venv/            # Virtual environment (excluded from Git)
@@ -53,15 +60,18 @@ python -m venv venv
 
 ### 3. Activate the Virtual Environment
 
-- **Windows CMD:**
+* **Windows CMD:**
+
   ```bash
   venv\Scripts\activate
   ```
-- **PowerShell:**
+* **PowerShell:**
+
   ```powershell
   .\venv\Scripts\Activate.ps1
   ```
-- **macOS/Linux:**
+* **macOS/Linux:**
+
   ```bash
   source venv/bin/activate
   ```
@@ -74,26 +84,34 @@ python main.py
 
 ---
 
-## 📄 Sample Output
+## 🔗 Pipeline Feature (How It Works)
 
+The project uses a **pipeline-based design** for easy extensibility:
+
+* Each processing step is a function that takes a list and returns a list.
+* You can easily add/remove steps from the pipeline list in `main.py`.
+
+### ➕ How to Add a New Step (Example: Average Calculation)
+
+1. Create a new Python file like `average.py`:
+
+2. Import it in `main.py`:
+
+3. Add it to the pipeline list in `main.py`:
+
+```python
+pipeline = [
+    ("Sum", process_sum),
+    ("Product", process_product),
+    ("Division", divide_first_last),
+    ("Average", calculate_average),  # New step added here
+]
 ```
-Enter at least two integers separated by space: 4 7
-Initial list: [4, 7]
-Sum of list: 11
-Sum is odd. Appending random number: 3
-List after appending: [4, 7, 3]
-Sum of list: 14
-Sum is even. Proceeding to multiplication step.
 
-Final list after sum step: [4, 7, 3]
+That’s it! The new step will automatically run after others in order.
 
-Product of list: 84
-Product is even. Proceeding to division step.
+---
 
-Final list after product step: [4, 7, 3]
-
-List before division: [4, 7, 3]
-Final Result (First element / Last element): 1
-```
+* Easy to extend: Simply add a new Python file and plug it into the pipeline.
 
 ---
