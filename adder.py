@@ -1,31 +1,28 @@
 import random
 
 def add_numbers(numbers):
-    """Returns the sum of all numbers in the list and prints it."""
+    """Return and print the sum of numbers in the list."""
     total = sum(numbers)
-    print(f"Sum of list: {total}")
+    print(f"Current sum of list: {total}")
     return total
 
 def process_sum(numbers):
-    """
-    Appends a random number (0-9) at most 3 times if sum is odd,
-    until the sum becomes even. Returns the modified list.
-    """
-    append_count = 0
+    """Make the sum even by appending random numbers (max 3 times)."""
     total = add_numbers(numbers)
+    attempts = 0
 
-    while total % 2 != 0 and append_count < 3:
-        rand_num = random.randint(0, 9)
-        print(f"Sum is odd. Appending random number: {rand_num}")
-        numbers.append(rand_num)
-        print(f"List after appending: {numbers}")
+    while total % 2 != 0 and attempts < 3:
+        random_number = random.randint(0, 9)
+        print(f"Sum is odd. Adding random number: {random_number}")
+        numbers.append(random_number)
+        print(f"List after adding: {numbers}")
         total = add_numbers(numbers)
-        append_count += 1
+        attempts += 1
 
     if total % 2 == 0:
-        print("Sum is even. Proceeding to multiplication step.\n")
+        print("Sum is now even. Moving to multiplication step.")
     else:
-        print("Sum remained odd after 3 attempts. Proceeding anyway.\n")
+        print("Sum is still odd after 3 tries. Moving to multiplication step anyway.")
 
     print(f"Final list after sum step: {numbers}\n")
     return numbers

@@ -6,12 +6,14 @@ def get_integer_list():
     """Takes at least two integers as input from the user and returns them as a list."""
     while True:
         try:
-            numbers = list(map(int, input("Enter at least two integers separated by space: ").split()))
+            user_input = input("Enter at least two integers separated by space: ")
+            numbers = list(map(int, user_input.split()))
+            
             if len(numbers) < 2:
-                raise ValueError("Please enter at least two integers.")
+                raise ValueError("You must enter at least two integers.")
             return numbers
         except ValueError as e:
-            print("Invalid input:", e)
+            print(f"Invalid input: {e}\nPlease try again.\n")
 
 if __name__ == "__main__":
     numbers = get_integer_list()
